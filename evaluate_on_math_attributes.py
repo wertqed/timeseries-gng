@@ -8,16 +8,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 dataset_path = "Sales_Transactions_Dataset_Weekly.csv"
-e_b = 0.05  # speed of neural winner
-e_n = 0.006  # speed of neural neighbor
-a_max = 8  # max age of edge
-l = 100  # parameter for starting recalculation
-a = 0.5  # coefficient of neurals u and v recalc
-d = 0.995  # coefficient of recalc all neurals
-passes = 15  # epoches of training model
+# e_b = 0.05  # speed of neural winner
+# e_n = 0.006  # speed of neural neighbor
+# a_max = 8  # max age of edge
+# l = 100  # parameter for starting recalculation
+# a = 0.5  # coefficient of neurals u and v recalc
+# d = 0.995  # coefficient of recalc all neurals
+# passes = 15  # epoches of training model
 
 
-def evaluate():
+def evaluate(e_b, e_n, a_max, l, a, d, passes):
     ds = pd.read_csv(dataset_path)
     data = ds[
         ["MIN", "MAX", "W0", "W1", "W2", "W3", "W4", "W5", "W6", "W7", "W8", "W9", "W10", "W11", "W12", "W13", "W14", "W15",
@@ -34,8 +34,8 @@ def evaluate():
          "W36", "W37", "W38", "W39", "W40", "W41", "W42", "W43",
          "W44", "W45", "W46", "W47", "W48", "W49", "W51"
          ]]
-    plt.plot(realData, label='Data')
-    plt.show()
+    # plt.plot(realData, label='Data')
+    # plt.show()
 
     data['AVG'] = data.mean(numeric_only=True, axis=1)
 
@@ -68,6 +68,7 @@ def evaluate():
             ind += 1
             print(clust)
     print('Global error all network(on euclidean distance): ' + str(gng.compute_global_error()))
+    return clusters
 
 
 if __name__ == '__main__':

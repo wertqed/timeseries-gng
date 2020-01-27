@@ -9,7 +9,7 @@ import tkinter as tk
 import matplotlib.pyplot as plt
 
 
-def evaluate():
+def evaluate(e_b, e_n, a_max, l, a, d, passes):
     ds = pd.read_csv("Sales_Transactions_Dataset_Weekly.csv")
     data = ds[
         ["W0", "W1", "W2", "W3", "W4", "W5", "W6", "W7", "W8", "W9", "W10", "W11", "W12", "W13", "W14", "W15",
@@ -19,10 +19,10 @@ def evaluate():
          "W36", "W37", "W38", "W39", "W40", "W41", "W42", "W43",
          "W44", "W45", "W46", "W47", "W48", "W49", "W51"
          ]]
-    plt.plot(data, label='Data')
-    plt.show()
+    # plt.plot(data, label='Data')
+    # plt.show()
     gng = GrowingNeuralGas(data.as_matrix(), output_folder="visualization")
-    gng.fit_network(e_b=0.05, e_n=0.006, a_max=12, l=100, a=0.5, d=0.995, passes=8, plot_evolution=True)
+    gng.fit_network(e_b=e_b, e_n=e_n, a_max=a_max, l=l, a=a, d=d, passes=passes, plot_evolution=True)
     clustered_data = gng.cluster_data()
     print('Found %d clusters.' % nx.number_connected_components(gng.network))
     target_infered = []
@@ -46,7 +46,7 @@ def evaluate():
             ind += 1
             print(clust)
     print('Global error all network(on euclidean distance): ' + str(gng.compute_global_error()))
-    return gng.cluster_data()
+    return clusters
 
 
 # if __name__ == '__main__':

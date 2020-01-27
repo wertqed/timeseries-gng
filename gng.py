@@ -248,7 +248,7 @@ class GrowingNeuralGas:
                 # ax.scatter(observations[:, 0], observations[:, 1], observations[:, 2], color=color[i], label='cluster #'+str(i))
         plt.legend()
         plt.savefig('visualization/clusters.png')
-        plt.show()
+        # plt.show()
 
 
     def plot_3d_clusters(self, clustered_data):
@@ -311,7 +311,7 @@ class GrowingNeuralGas:
 
         plt.legend()
         plt.savefig('visualization/clusters.png')
-        plt.show()
+        # plt.show()
 
 
     def compute_global_error(self):
